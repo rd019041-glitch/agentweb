@@ -1,0 +1,1336 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GRACE - HR Partner</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.page {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.header {
+    height: 76px;
+    padding: 20px 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f1f5f9;
+    background: #ffffff;
+    position: relative;
+    z-index: 10;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-size: 14px;
+    color: #64748b;
+}
+
+.back-btn {
+    border: none;
+    background: #f8fafc;
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: #475569;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: #f1f5f9;
+}
+
+.breadcrumb-arrow {
+    color: #cbd5e1;
+    font-size: 20px;
+}
+
+.breadcrumb-ex {
+    color: #2563eb;
+    font-weight: 700;
+}
+
+.breadcrumb-current {
+    color: #334155;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.content {
+    height: calc(100vh - 76px);
+    display: flex;
+    position: relative;
+}
+
+
+/* =========================================================
+   LEFT SECTION
+========================================================= */
+
+.left-panel {
+    width: calc(100% - 430px);
+    height: 100%;
+    padding: 28px 42px 35px 42px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.left-panel::-webkit-scrollbar {
+    width: 5px;
+}
+
+.left-panel::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   AGENT HEADER
+========================================================= */
+
+.agent-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 27px;
+}
+
+.agent-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #dbeafe, #ede9fe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #2563eb;
+    border: 3px solid #ffffff;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.08);
+}
+
+.agent-title h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 30px;
+    line-height: 1.15;
+    color: #334155;
+    font-weight: 700;
+}
+
+.agent-title p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   LIVE EXPERIENCE BUTTON
+========================================================= */
+
+.live-btn {
+    position: absolute;
+    right: 455px;
+    top: 28px;
+
+    border: none;
+    padding: 12px 23px;
+
+    border-radius: 25px;
+
+    background: linear-gradient(
+        90deg,
+        #7c5ce6,
+        #8b72ef
+    );
+
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 15px rgba(124, 92, 230, 0.18);
+}
+
+.live-btn:hover {
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+.tabs {
+    display: flex;
+    align-items: center;
+
+    width: fit-content;
+
+    background: #f8fafc;
+    border-radius: 22px;
+
+    padding: 4px;
+
+    margin-bottom: 22px;
+
+    border: 1px solid #f1f5f9;
+}
+
+.tab {
+    border: none;
+    background: transparent;
+
+    padding: 10px 17px;
+
+    border-radius: 18px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.tab:hover {
+    color: #334155;
+}
+
+.tab.active {
+    background: #ffffff;
+    color: #7c5ce6;
+
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================================
+   TAB CONTENT
+========================================================= */
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* =========================================================
+   ACCORDION
+========================================================= */
+
+.capability-group {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.group-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 17px 10px;
+
+    border: none;
+    background: #ffffff;
+
+    color: #334155;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.group-header:hover {
+    background: #fafafa;
+}
+
+.group-header .plus {
+    font-size: 20px;
+    font-weight: 400;
+    color: #64748b;
+
+    transition: transform 0.25s ease;
+}
+
+.capability-group.open .plus {
+    transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   CAPABILITY LIST
+========================================================= */
+
+.group-body {
+    display: none;
+
+    padding: 0 10px 14px 10px;
+
+    animation: slideDown 0.2s ease;
+}
+
+.capability-group.open .group-body {
+    display: block;
+}
+
+.capability-item {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 14px;
+
+    margin: 4px 0;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    color: #64748b;
+
+    background: #fafafa;
+}
+
+.capability-item:hover {
+    background: #f8fafc;
+    color: #334155;
+}
+
+.capability-icon {
+    width: 6px;
+    height: 6px;
+
+    background: #7c5ce6;
+
+    border-radius: 50%;
+
+    margin-right: 12px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   OTHER TAB CONTENT
+========================================================= */
+
+.info-card {
+    border: 1px solid #eef2f7;
+    border-radius: 14px;
+
+    padding: 22px;
+
+    background: #fafbfc;
+
+    max-width: 850px;
+}
+
+.info-card h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 17px;
+    color: #334155;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #64748b;
+}
+
+.info-list {
+    margin-top: 18px;
+}
+
+.info-list div {
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #475569;
+}
+
+
+/* =========================================================
+   RIGHT PHONE / AVAAMO AREA
+========================================================= */
+
+    .right-panel {
+    width: 430px;
+    height: calc(100vh + 76px);
+
+    position: absolute;
+    top: -76px;
+    right: 0;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-left: 1px solid #f1f5f9;
+
+    /* Phone area must extend into the header area */
+    z-index: 20;
+}
+
+
+/*
+   Avaamo desktop experience is intentionally kept
+   at desktop dimensions and positioned so the
+   phone experience appears on the right.
+*/
+
+    .iframe-wrap {
+    position: absolute;
+
+    width: 1430px;
+    height: 100vh;
+
+    left: -937px;
+    top: 0;
+
+    overflow: hidden;
+}
+
+.iframe-wrap iframe {
+    width: 1430px;
+    height: 100vh;
+
+    border: none;
+    outline: none;
+
+    display: block;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   FOOTER LABEL
+========================================================= */
+
+.center-view {
+    position: absolute;
+
+    bottom: 18px;
+    right: 25px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    color: #64748b;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes slideDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .left-panel {
+        width: 100%;
+    }
+
+    .right-panel {
+        display: none;
+    }
+
+    .live-btn {
+        right: 30px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="breadcrumb">
+
+            <button class="back-btn">
+                Back
+            </button>
+
+            <span class="breadcrumb-arrow">
+                ›
+            </span>
+
+            <span class="breadcrumb-ex">
+                EX
+            </span>
+
+            <span class="breadcrumb-arrow">
+                ›
+            </span>
+
+            <span class="breadcrumb-current">
+                Grace
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="content">
+
+
+        <!-- =================================================
+             LEFT PANEL
+        ================================================== -->
+
+        <section class="left-panel">
+
+
+            <!-- AGENT HEADER -->
+
+            <div class="agent-header">
+
+                <div class="agent-avatar">
+                    G
+                </div>
+
+                <div class="agent-title">
+
+                    <h1>
+                        Meet Grace,
+                    </h1>
+
+                    <p>
+                        Your HR Partner
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LIVE EXPERIENCE -->
+
+            <button class="live-btn">
+                Live Experience
+            </button>
+
+
+
+            <!-- =================================================
+                 TABS
+            ================================================== -->
+
+            <div class="tabs">
+
+                <button
+                    class="tab active"
+                    onclick="openTab('functionalities', this)"
+                >
+                    Agent Functionalities
+                </button>
+
+                <button
+                    class="tab"
+                    onclick="openTab('agentic', this)"
+                >
+                    Agentic Platform Capabilities
+                </button>
+
+                <button
+                    class="tab"
+                    onclick="openTab('configuration', this)"
+                >
+                    HR System Configuration
+                </button>
+
+                <button
+                    class="tab"
+                    onclick="openTab('conversation', this)"
+                >
+                    Conversational Intelligence
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TAB 1 - AGENT FUNCTIONALITIES
+            ================================================== -->
+
+            <div
+                id="functionalities"
+                class="tab-content active"
+            >
+
+
+                <!-- RECRUITMENT & CAREER -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Recruitment & Career
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Job Openings
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Internal Transfers
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ONBOARDING & ORIENTATION -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Onboarding & Orientation
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Onboarding Tasks
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Orientation Scheduling
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BENEFITS & COMPENSATION -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Benefits & Compensation
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Benefits Enrollment
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Plan Changes
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Payroll Queries
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Pay Discrepancies
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Expense Reimbursements
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Retirement Plans
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Retirement Transition
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LEAVE & ATTENDANCE -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Leave & Attendance
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Medical Leave
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Leave Management
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Attendance Queries
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Sabbatical Policies
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Timesheet Guidance
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Holiday Calendars
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- WELLNESS -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Employee Wellness
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Wellness Programs
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- POLICIES -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Policies & Compliance
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Policy Clarifications
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Travel Policies
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PROFILE -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Employee Profile & Access
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Profile Updates
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Profile Access
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LEARNING -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Learning & Development
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Learning Modules
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HR CASE MANAGEMENT -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            HR Case Management
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            HR Case Creation
+                        </div>
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Case Resolution
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- APPROVALS -->
+
+                <div class="capability-group">
+
+                    <button
+                        class="group-header"
+                        onclick="toggleGroup(this)"
+                    >
+
+                        <span>
+                            Approvals & Requests
+                        </span>
+
+                        <span class="plus">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="group-body">
+
+                        <div class="capability-item">
+                            <span class="capability-icon"></span>
+                            Approval Status
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TAB 2 - AGENTIC PLATFORM
+            ================================================== -->
+
+            <div
+                id="agentic"
+                class="tab-content"
+            >
+
+                <div class="info-card">
+
+                    <h3>
+                        Agentic HR Capabilities
+                    </h3>
+
+                    <p>
+                        Grace can use conversational workflows to
+                        understand employee intent, retrieve relevant
+                        HR information, guide employees through HR
+                        processes and initiate supported HR actions.
+                    </p>
+
+                    <div class="info-list">
+
+                        <div>
+                            Intent Recognition
+                        </div>
+
+                        <div>
+                            Context-Aware Conversations
+                        </div>
+
+                        <div>
+                            HR Workflow Guidance
+                        </div>
+
+                        <div>
+                            Information Retrieval
+                        </div>
+
+                        <div>
+                            HR Case Workflow
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TAB 3 - HR SYSTEM CONFIGURATION
+            ================================================== -->
+
+            <div
+                id="configuration"
+                class="tab-content"
+            >
+
+                <div class="info-card">
+
+                    <h3>
+                        HR System Configuration
+                    </h3>
+
+                    <p>
+                        Grace is designed to work with configured
+                        HR systems and enterprise data sources to
+                        provide employees with relevant HR information
+                        and supported services.
+                    </p>
+
+                    <div class="info-list">
+
+                        <div>
+                            Employee Information
+                        </div>
+
+                        <div>
+                            Benefits Information
+                        </div>
+
+                        <div>
+                            Leave & Attendance Information
+                        </div>
+
+                        <div>
+                            Payroll & Compensation Information
+                        </div>
+
+                        <div>
+                            HR Case Information
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TAB 4 - CONVERSATIONAL INTELLIGENCE
+            ================================================== -->
+
+            <div
+                id="conversation"
+                class="tab-content"
+            >
+
+                <div class="info-card">
+
+                    <h3>
+                        Conversational Intelligence
+                    </h3>
+
+                    <p>
+                        Grace understands employee requests in natural
+                        language and guides users toward the appropriate
+                        HR capability while maintaining a professional
+                        and helpful conversational experience.
+                    </p>
+
+                    <div class="info-list">
+
+                        <div>
+                            Natural Language Understanding
+                        </div>
+
+                        <div>
+                            Intent Classification
+                        </div>
+
+                        <div>
+                            Context Management
+                        </div>
+
+                        <div>
+                            Guided Conversations
+                        </div>
+
+                        <div>
+                            Conversational Fallback
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             RIGHT PANEL - GRACE LIVE EXPERIENCE
+        ====================================================== -->
+
+        <section class="right-panel">
+
+            <div class="iframe-wrap">
+
+                <iframe
+                    src="https://c0.avaamo.com/web_channels/d9908341-b1e7-41f3-9443-ce2d42ee5d23/prompt.html"
+                    allow="microphone; camera; autoplay">
+                </iframe>
+
+            </div>
+
+            <div class="center-view">
+                Switch to center view
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   TAB SWITCHING
+========================================================= */
+
+function openTab(tabId, clickedTab) {
+
+    /*
+       Hide every tab content
+    */
+
+    const contents =
+        document.querySelectorAll('.tab-content');
+
+    contents.forEach(function(content) {
+
+        content.classList.remove('active');
+
+    });
+
+
+    /*
+       Remove active state
+       from every tab
+    */
+
+    const tabs =
+        document.querySelectorAll('.tab');
+
+    tabs.forEach(function(tab) {
+
+        tab.classList.remove('active');
+
+    });
+
+
+    /*
+       Show selected tab
+    */
+
+    document
+        .getElementById(tabId)
+        .classList.add('active');
+
+
+    /*
+       Highlight selected tab
+    */
+
+    clickedTab.classList.add('active');
+
+}
+
+
+
+/* =========================================================
+   ACCORDION
+========================================================= */
+
+function toggleGroup(button) {
+
+    const group =
+        button.parentElement;
+
+
+    /*
+       Toggle selected category
+    */
+
+    group.classList.toggle('open');
+
+}
+
+</script>
+
+</body>
