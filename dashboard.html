@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northern Trust Service Desk - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    /* অফিশিয়াল নর্দান ট্রাস্ট গ্রিন ব্যাকগ্রাউন্ড */
+    background-color: #0b3a2e;
+    background-image: 
+        radial-gradient(circle at 85% 20%, rgba(20, 90, 70, 0.45) 0%, transparent 60%),
+        linear-gradient(135deg, #05221a 0%, #0b3a2e 50%, #031812 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ব্যাকগ্রাউন্ডে ওয়াটারমার্ক লোগো */
+body::after {
+    content: "";
+    position: absolute;
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 750px;
+    height: 750px;
+    background-image: url('bg-logo.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    filter: brightness(0) invert(1);
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* TOP HEADER & LOGO */
+.top-header {
+    position: absolute;
+    top: 35px;
+    left: 45px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo-img {
+    height: 105px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    transition: transform 0.2s ease;
+}
+
+.brand-logo-img:hover {
+    transform: scale(1.02);
+}
+
+/* MAIN CONTAINER */
+.workplace-container {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* MAIN PAGE HEADING STRUCTURE */
+.header-section {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.welcome-small {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.main-brand-title {
+    font-family: 'Cinzel', serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.service-desk-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.service-desk-divider .line {
+    height: 1px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent, #34d399, transparent);
+}
+
+.service-desk-text {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #34d399;
+    text-transform: uppercase;
+}
+
+.header-subtitle {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+/* AGENT CARD */
+.agent-card {
+    position: relative;
+    background: rgba(2, 20, 15, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 18px;
+    padding: 35px 36px;
+    color: #ffffff;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* TOP LEFT INTRO BADGE */
+.intro-badge {
+    position: absolute;
+    top: 20px;
+    left: 26px;
+    background: rgba(52, 211, 153, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    color: #34d399;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* HERO SECTION WITH REALISTIC DYNAMIC 3D AI AVATAR */
+.agent-hero {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 25px;
+    margin-bottom: 22px;
+}
+
+/* DYNAMIC ANIMATED AI ROBOT STYLING */
+.ai-avatar-wrapper {
+    flex-shrink: 0;
+    width: 135px;
+    height: 135px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-robot-3d {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.6));
+}
+
+/* 1. Floating Animation for Entire Robot */
+.floating-body {
+    animation: robotFloat 3.5s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes robotFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+/* 2. Wave Hand Animation (Hi Gesture) */
+.right-arm-wave {
+    animation: armWave 2s ease-in-out infinite;
+    transform-origin: 140px 115px;
+}
+
+@keyframes armWave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-18deg); }
+    50% { transform: rotate(8deg); }
+    75% { transform: rotate(-14deg); }
+}
+
+/* 3. Left Arm Idle Breathing */
+.left-arm-idle {
+    animation: armIdle 3.5s ease-in-out infinite;
+    transform-origin: 60px 115px;
+}
+
+@keyframes armIdle {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(4deg); }
+}
+
+/* 4. Glowing Eye Pulse */
+.eye-glow {
+    animation: eyePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes eyePulse {
+    0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 2px #34d399); }
+    50% { opacity: 1; filter: drop-shadow(0 0 6px #34d399); }
+}
+
+/* 5. Platform Pulse Effect */
+.platform-glow {
+    animation: platformPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes platformPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.08); opacity: 0.9; }
+}
+
+.agent-hero-content {
+    text-align: left;
+}
+
+.title-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.agent-hero-content h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.agent-hero-content h2 .highlight {
+    color: #34d399;
+}
+
+/* Digital Sparkles */
+.sparkle-icon {
+    width: 18px;
+    height: 18px;
+    stroke: #34d399;
+    stroke-width: 2.5;
+    fill: none;
+    margin-bottom: 12px;
+    animation: sparkleGlow 2s ease-in-out infinite;
+}
+
+@keyframes sparkleGlow {
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+.agent-hero-content .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.agent-hero-content .desc {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.45;
+}
+
+/* SECTION LABEL ABOVE BUTTONS */
+.section-label {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #34d399;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative;
+}
+
+/* CAPABILITIES GRID */
+.capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 650px) {
+    .capabilities-grid {
+        grid-template-columns: 1fr;
+    }
+    .agent-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    .agent-hero-content {
+        text-align: center;
+    }
+}
+
+.capability-box {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.capability-box:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.capability-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cap-icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #34d399;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.capability-box h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.toggle-icon {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.capability-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, margin-top 0.25s ease;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.capability-box.active .capability-list {
+    max-height: 180px;
+    margin-top: 12px;
+}
+
+.capability-box.active .toggle-icon {
+    transform: rotate(180deg);
+    color: #34d399;
+}
+
+.capability-list li {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 4px 0;
+    position: relative;
+    padding-left: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.capability-list li::before {
+    content: "•";
+    color: #34d399;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+</style>
+</head>
+<body>
+
+<header class="top-header">
+    <img src="logo.svg" alt="Northern Trust Logo" class="brand-logo-img">
+</header>
+
+<div class="workplace-container">
+    
+    <!-- HEADER SECTION -->
+    <div class="header-section">
+        <div class="welcome-small">WELCOME TO</div>
+        <h1 class="main-brand-title">NORTHERN TRUST</h1>
+        <div class="service-desk-divider">
+            <span class="line"></span>
+            <span class="service-desk-text">SERVICE DESK</span>
+            <span class="line"></span>
+        </div>
+        <p class="header-subtitle">Your trusted partner for quick, reliable and secure IT support.<br>We're here to help, anytime you need us.</p>
+    </div>
+
+    <!-- AGENT CARD -->
+    <div class="agent-card">
+        <div class="intro-badge">MEET LIVA</div>
+
+        <div class="agent-hero">
+            <!-- ULTRA REALISTIC ANIMATED 3D AI ROBOT AVATAR -->
+            <div class="ai-avatar-wrapper">
+                <svg class="ai-robot-3d" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="orbitGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#34d399" stop-opacity="0.5"/>
+                            <stop offset="100%" stop-color="#34d399" stop-opacity="0"/>
+                        </radialGradient>
+                        <linearGradient id="helmShine" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="35%" stop-color="#0f5442"/>
+                            <stop offset="100%" stop-color="#02140f"/>
+                        </linearGradient>
+                        <linearGradient id="glassFace" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#05281e"/>
+                            <stop offset="100%" stop-color="#010c08"/>
+                        </linearGradient>
+                        <linearGradient id="armArmor" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="60%" stop-color="#34d399"/>
+                            <stop offset="100%" stop-color="#09382c"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Base Glowing Floating Platform (Static Position with Pulse) -->
+                    <ellipse cx="100" cy="172" rx="65" ry="14" fill="url(#orbitGlow)" class="platform-glow" />
+                    <ellipse cx="100" cy="172" rx="48" ry="8" stroke="#34d399" stroke-width="2" stroke-dasharray="6 4" opacity="0.8" />
+
+                    <!-- Floating AI Body Group (Smooth Hovering Animation) -->
+                    <g class="floating-body">
+                        
+                        <!-- LEFT ARM (Idle Motion) -->
+                        <g class="left-arm-idle">
+                            <path d="M 58 118 C 45 130, 42 145, 48 155" stroke="url(#armArmor)" stroke-width="10" stroke-linecap="round" fill="none" />
+                            <circle cx="48" cy="155" r="6" fill="#34d399" />
+                        </g>
+
+                        <!-- RIGHT ARM (Continuously Waving "Hi" Gesture) -->
+                        <g class="right-arm-wave">
+                            <path d="M 142 118 C 158 128, 168 110, 162 90" stroke="url(#armArmor)" stroke-width="10" stroke-linecap="round" fill="none" />
+                            <!-- Palm / Hand -->
+                            <circle cx="162" cy="88" r="7" fill="#34d399" />
+                            <!-- Glowing Fingers Spread for Wave -->
+                            <path d="M 158 82 L 155 75 M 162 81 L 162 73 M 166 82 L 171 76" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+                        </g>
+
+                        <!-- Torso & Chest Armor -->
+                        <path d="M 68 115 C 68 100, 132 100, 132 115 C 132 150, 68 150, 68 115 Z" fill="url(#armArmor)" />
+                        <!-- Chest Core Reactor Glow -->
+                        <circle cx="100" cy="128" r="8" fill="#02140f" stroke="#34d399" stroke-width="2" />
+                        <circle cx="100" cy="128" r="4" fill="#34d399" class="eye-glow" />
+
+                        <!-- 3D Helmet Outer Shell -->
+                        <rect x="42" y="34" width="116" height="82" rx="41" fill="url(#helmShine)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" />
+                        
+                        <!-- Side Ear Nodes -->
+                        <circle cx="38" cy="75" r="9" fill="#34d399" />
+                        <circle cx="38" cy="75" r="5" fill="#042018" />
+                        <circle cx="162" cy="75" r="9" fill="#34d399" />
+                        <circle cx="162" cy="75" r="5" fill="#042018" />
+
+                        <!-- Visor Glass Face -->
+                        <rect x="52" y="44" width="96" height="62" rx="31" fill="url(#glassFace)" stroke="#34d399" stroke-width="2" />
+                        
+                        <!-- Visor Gloss Reflection -->
+                        <path d="M 62 52 C 85 46, 115 46, 138 52 C 120 56, 80 56, 62 52 Z" fill="#ffffff" opacity="0.25" />
+
+                        <!-- Glowing Dynamic Eyes & Smile -->
+                        <g class="eye-glow">
+                            <path d="M 72 74 Q 82 62 92 74" stroke="#34d399" stroke-width="5" stroke-linecap="round" fill="none" />
+                            <path d="M 108 74 Q 118 62 128 74" stroke="#34d399" stroke-width="5" stroke-linecap="round" fill="none" />
+                            <path d="M 92 88 Q 100 95 108 88" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round" fill="none" />
+                        </g>
+
+                    </g>
+                </svg>
+            </div>
+
+            <div class="agent-hero-content">
+                <div class="title-container">
+                    <h2>Hi, I'm <span class="highlight">Liva</span></h2>
+                    <svg class="sparkle-icon" viewBox="0 0 24 24">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                </div>
+                <div class="subtitle">YOUR IT SERVICE DESK AGENT</div>
+                <div class="desc">I'm here to assist you with your IT needs, answer your questions, and get things done — quickly and efficiently.</div>
+            </div>
+        </div>
+
+        <div class="section-label">HERE ARE SOME KEY FUNCTIONALITIES OF LIVA</div>
+
+        <div class="capabilities-grid">
+            <!-- BOX 1: CREDENTIALS & ACCESS -->
+            <div class="capability-box" onclick="toggleCategory(this)">
+                <div class="capability-header">
+                    <div class="title-with-icon">
+                        <svg class="cap-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <h4>CREDENTIALS & ACCESS</h4>
+                    </div>
+                    <span class="toggle-icon">▾</span>
+                </div>
+                <ul class="capability-list">
+                    <li>Password Reset</li>
+                    <li>Account Unlock</li>
+                    <li>Application Access</li>
+                    <li>Authentication / Verification</li>
+                </ul>
+            </div>
+
+            <!-- BOX 2: INCIDENT & QUERY RESOLUTION -->
+            <div class="capability-box" onclick="toggleCategory(this)">
+                <div class="capability-header">
+                    <div class="title-with-icon">
+                        <svg class="cap-icon" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <h4>INCIDENT & QUERY RESOLUTION</h4>
+                    </div>
+                    <span class="toggle-icon">▾</span>
+                </div>
+                <ul class="capability-list">
+                    <li>Incident Classification</li>
+                    <li>Incident Status</li>
+                    <li>Knowledge-Based Answers</li>
+                    <li>Contextual Troubleshooting</li>
+                </ul>
+            </div>
+
+            <!-- BOX 3: SOP-BASED TRIAGE RESOLUTION -->
+            <div class="capability-box" onclick="toggleCategory(this)">
+                <div class="capability-header">
+                    <div class="title-with-icon">
+                        <svg class="cap-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                        <h4>SOP-BASED TRIAGE RESOLUTION</h4>
+                    </div>
+                    <span class="toggle-icon">▾</span>
+                </div>
+                <ul class="capability-list">
+                    <li>VPN Troubleshooting</li>
+                    <li>Remote Desktop Issues</li>
+                    <li>Guided Diagnosis</li>
+                    <li>Resolution / Escalation</li>
+                </ul>
+            </div>
+
+            <!-- BOX 4: SERVICE REQUEST AUTOMATION -->
+            <div class="capability-box" onclick="toggleCategory(this)">
+                <div class="capability-header">
+                    <div class="title-with-icon">
+                        <svg class="cap-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        <h4>SERVICE REQUEST AUTOMATION</h4>
+                    </div>
+                    <span class="toggle-icon">▾</span>
+                </div>
+                <ul class="capability-list">
+                    <li>Software / Hardware Requests</li>
+                    <li>Access Requests</li>
+                    <li>Employee Services</li>
+                    <li>Automated Transactions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AVAAMO CHATBOT INTEGRATION -->
+<script type="text/javascript">
+var AvaamoChatBot = function(t) {
+    function o(t, o) {
+        var n = document.createElement("script");
+        n.setAttribute("src", t);
+        n.setAttribute("id", "avm-web-channel");
+        n.onload = o;
+        document.body.appendChild(n);
+    } 
+    return this.options = t || {}, this.load = function(t) {
+        o(this.options.url, function() {
+            window.Avaamo.addFrame();
+            if (t && "function" == typeof(t)) t(window.Avaamo);
+        });
+    }, this;
+};
+
+var chatBox = new AvaamoChatBot({
+    url: 'https://c0.avaamo.com/web_channels/42884335-4672-408f-b6b4-8c3adbacc16c?action=demo&controller=web_channels'
+});
+
+chatBox.load();
+</script>
+
+<script>
+if (sessionStorage.getItem('isNorthernTrustAuthenticated') !== 'true') {
+    window.location.href = "index.html";
+}
+
+function toggleCategory(element) {
+    const isActive = element.classList.contains('active');
+    document.querySelectorAll('.capability-box').forEach(box => {
+        box.classList.remove('active');
+    });
+    if (!isActive) {
+        element.classList.add('active');
+    }
+}
+</script>
+
+</body>
+</html>
